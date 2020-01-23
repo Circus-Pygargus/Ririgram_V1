@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>ririgram</title>
+
+    <link rel="stylesheet" href="css/game.css">
+
+</head>
+
+
+<body>
+
+    <div id="main-content">
+        <div id="gameboard" class="hidden"></div>
+        <div id="game-options">
+            <h2>Options</h2>
+            <h3>Taille de la grille</h3>
+            <div class="option-group">
+                <label for="">Nombre de lignes</label>
+                <input type="number" name="rows-nb" id="rows-nb" value="4" min="1" max="30">
+            </div>
+            <div class="option-group">
+                <label for="">Nombre de Colonnes</label>
+                <input type="number" name="cols-nb" id="cols-nb" value="4" min="1" max="30">
+            </div>
+            <h3>Couleurs</h3>
+            <div class="option-group">
+                <label for="color-head-bg">Entêtes background</label>
+                <input type="color" name="color-head-bg" id="color-head-bg" value="#333333">
+            </div>
+            <div class="option-group">
+                <label for="color-head-font">Entêtes indications</label>
+                <input type="color" name="color-head-font" id="color-head-font" value="#dddddd">
+            </div>
+            <div class="option-group">
+                <label for="color-answer-origin">Réponse originale</label>
+                <input type="color" name="color-answer-origin" id="color-answer-origin" value="#dddddd">
+            </div>
+            <div class="option-group">
+                <label for="color-answer-no">Réponse non</label>
+                <input type="color" name="color-answer-no" id="color-answer-no">
+            </div>
+            <div class="option-group">
+                <label for="color-answer-maybe">Réponse peut-être</label>
+                <input type="color" name="color-answer-maybe" id="color-answer-maybe">
+            </div>
+            <div class="option-group">
+                <label for="color-answer-yes">Réponse oui</label>
+                <input type="color" name="color-answer-yes" id="color-answer-yes">
+            </div>
+            <div id="back-to-default">Retour valeurs par défaut</div>
+            <div id="new-game">Nouvelle partie</div>
+        </div>
+        <div id="victory" class="hidden">
+            <h2>Victoire</h2>
+            <p>Félicitations ! Tu as fini la grille en <span id="clicks-nb"></span>.</p>
+            <p id="special-congrats" class="hidden">Et c'est un sans faute !!!</p>
+            <div id="play-again">Nouvelle partie</div>
+            <div id="options-link">Options</div>
+        </div>
+    </div> 
+
+
+    <script src="js/game.js"></script>
+
+
+</body>
+</html>

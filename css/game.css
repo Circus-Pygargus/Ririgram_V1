@@ -1,0 +1,404 @@
+/* variables */
+:root {
+  --color-head-bg: #333333;
+  --color-head-font: #dddddd;
+  --color-answer-origin: #dddddd;
+  --color-answer-yes: #FF8800;
+  --color-answer-maybe: rgb(119, 121, 153);
+  --color-answer-no: #333333;
+  --nb-rows: 4;
+  --nb-cols: 4;
+  --gameboard-width: 90vw;
+  --gameboard-heigth: 90vw;
+  --head-size: 45vw;
+  --row-head-font-size: 32px;
+  --col-head-font-size: 32px;
+}
+
+@media (min-width: 850px) {
+  :root {
+    --gameboard-width: 800px;
+    --gameboard-heigth: 800px;
+    --head-size: 400px;
+  }
+}
+
+* {
+  padding: 0;
+  margin: 0;
+}
+
+html {
+  /* Disable text select =)  */
+  -moz-user-select: none;
+  /* Firefox */
+  -ms-user-select: none;
+  /* Internet Explorer */
+  -khtml-user-select: none;
+  /* KHTML browsers (e.g. Konqueror) */
+  -webkit-user-select: none;
+  /* Chrome, Safari, and Opera */
+  -webkit-touch-callout: none;
+  /* Disable Android and iOS callouts*/
+}
+
+#main-content {
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 100vw;
+  height: 100vh;
+}
+
+#main-content #game-options {
+  position: absolute;
+  display: block;
+  font-size: 2rem;
+  padding: 50px 50px;
+  border: 15px solid #080808;
+}
+
+#main-content #game-options.hidden {
+  display: none;
+}
+
+#main-content #game-options h2 {
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+#main-content #game-options .option-group {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  margin: 10px 0;
+}
+
+#main-content #game-options .option-group input {
+  width: 70px;
+  text-align: center;
+  font-size: 2rem;
+  margin-left: 50px;
+}
+
+#main-content #game-options #new-game,
+#main-content #game-options #back-to-default {
+  cursor: pointer;
+  text-align: center;
+  margin-top: 25px;
+  padding: 10px 0;
+  border: 1px solid black;
+}
+
+#main-content #gameboard {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  width: var(--gameboard-width);
+  height: var(--gameboard-heigth);
+  border: 15px solid #080808;
+}
+
+#main-content #gameboard.hidden {
+  display: none;
+}
+
+#main-content #gameboard .head-div {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: nowrap;
+      flex-wrap: nowrap;
+  width: 100%;
+  height: var(--head-size);
+}
+
+#main-content #gameboard .head-div .free-place-div {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: var(--head-size);
+  height: 100%;
+}
+
+#main-content #gameboard .head-div .free-place-div #another-grid,
+#main-content #gameboard .head-div .free-place-div #same-grid-again,
+#main-content #gameboard .head-div .free-place-div #remove-maybe-choices,
+#main-content #gameboard .head-div .free-place-div #options-btn {
+  cursor: pointer;
+  width: 40%;
+  text-align: center;
+  padding: 10px 0;
+  border: 1px solid var(--color-head-bg);
+}
+
+#main-content #gameboard .head-div .free-place-div #answer-choice-div {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+}
+
+#main-content #gameboard .head-div .free-place-div #answer-choice-div #answer-zero {
+  width: 46px;
+  height: 46px;
+  background-color: var(--color-answer-origin);
+  margin: 15px 20px;
+  -webkit-box-shadow: inset 0 0  5px 5px white;
+          box-shadow: inset 0 0  5px 5px white;
+}
+
+#main-content #gameboard .head-div .free-place-div #answer-choice-div #answer-zero.current-choice {
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
+#main-content #gameboard .head-div .free-place-div #answer-choice-div #answer-zero::before {
+  content: 'Delete';
+  position: relative;
+  top: -25px;
+  left: -1px;
+}
+
+#main-content #gameboard .head-div .free-place-div #answer-choice-div #answer-no {
+  cursor: pointer;
+  width: 46px;
+  height: 46px;
+  background-color: var(--color-answer-no);
+  margin: 15px 20px;
+  -webkit-box-shadow: inset 0 0  5px 5px white;
+          box-shadow: inset 0 0  5px 5px white;
+}
+
+#main-content #gameboard .head-div .free-place-div #answer-choice-div #answer-no.current-choice {
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
+#main-content #gameboard .head-div .free-place-div #answer-choice-div #answer-no::before {
+  content: 'No';
+  position: relative;
+  top: -25px;
+  left: 10px;
+}
+
+#main-content #gameboard .head-div .free-place-div #answer-choice-div #answer-maybe {
+  cursor: pointer;
+  width: 46px;
+  height: 46px;
+  background-color: var(--color-answer-maybe);
+  margin: 15px 20px;
+  -webkit-box-shadow: inset 0 0  5px 5px white;
+          box-shadow: inset 0 0  5px 5px white;
+}
+
+#main-content #gameboard .head-div .free-place-div #answer-choice-div #answer-maybe.current-choice {
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
+#main-content #gameboard .head-div .free-place-div #answer-choice-div #answer-maybe::before {
+  content: 'Maybe';
+  position: relative;
+  top: -25px;
+  left: -2px;
+}
+
+#main-content #gameboard .head-div .free-place-div #answer-choice-div #answer-yes {
+  cursor: pointer;
+  width: 46px;
+  height: 46px;
+  background-color: var(--color-answer-yes);
+  margin: 15px 20px;
+  -webkit-box-shadow: inset 0 0  5px 5px white;
+          box-shadow: inset 0 0  5px 5px white;
+}
+
+#main-content #gameboard .head-div .free-place-div #answer-choice-div #answer-yes.current-choice {
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
+#main-content #gameboard .head-div .free-place-div #answer-choice-div #answer-yes::before {
+  content: 'Yes';
+  position: relative;
+  top: -25px;
+  left: 5px;
+}
+
+#main-content #gameboard .head-div .col-head-div {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: calc((100% - var(--head-size)) / var(--nb-cols));
+  height: 100%;
+  background-color: var(--color-head-bg);
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  border: 1px solid var(--color-head-font);
+}
+
+#main-content #gameboard .head-div .col-head-div:nth-child(5n+1) {
+  border-right-width: 3px;
+}
+
+#main-content #gameboard .head-div .col-head-div:nth-last-child(1) {
+  border-right-width: 1px;
+  border-right-color: var(--color-head-font);
+}
+
+#main-content #gameboard .head-div .col-head-div .helper {
+  font-size: var(--col-head-font-size);
+  color: var(--color-head-font);
+}
+
+#main-content #gameboard .row-div {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: nowrap;
+      flex-wrap: nowrap;
+  width: 100%;
+  height: calc((100% - var(--head-size)) / var(--nb-rows));
+}
+
+#main-content #gameboard .row-div .row-head-div {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: var(--head-size);
+  height: 100%;
+  background-color: var(--color-head-bg);
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  border: 1px solid var(--color-head-font);
+}
+
+#main-content #gameboard .row-div .row-head-div .helper {
+  padding: 0 10px;
+  font-size: var(--row-head-font-size);
+  color: var(--color-head-font);
+}
+
+#main-content #gameboard .row-div .tile {
+  cursor: pointer;
+  width: calc((100% - var(--head-size)) / var(--nb-cols));
+  height: 100%;
+  background-color: var(--color-answer-origin);
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  border: 1px solid #222222;
+}
+
+#main-content #gameboard .row-div .tile:nth-child(5n+1) {
+  border-right-width: 3px;
+  /* border-bottom is in game.js::fillGameboard() -> tileDiv.classList.add('tile'); */
+}
+
+#main-content #gameboard .row-div .tile:nth-last-child(1) {
+  border-right-width: 1px;
+  border-right-color: var(--color-head-font);
+}
+
+#main-content #gameboard .row-div .tile[data-answer="yes"] {
+  background-color: var(--color-answer-yes);
+}
+
+#main-content #gameboard .row-div .tile[data-answer="maybe"] {
+  background-color: var(--color-answer-maybe);
+}
+
+#main-content #gameboard .row-div .tile[data-answer="no"] {
+  background-color: var(--color-answer-no);
+}
+
+#main-content #gameboard .row-div .tile:hover {
+  -webkit-box-shadow: inset 0 0 6px 6px white;
+          box-shadow: inset 0 0 6px 6px white;
+}
+
+#main-content #victory {
+  display: block;
+  position: absolute;
+  z-index: 1;
+  top: 15px;
+  font-size: 2rem;
+  padding: 25px;
+  background-color: #222222;
+  color: #dddddd;
+}
+
+#main-content #victory.hidden {
+  display: none;
+}
+
+#main-content #victory h2 {
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+#main-content #victory p {
+  margin: 10px 0;
+}
+
+#main-content #victory #special-congrats {
+  display: block;
+  text-align: center;
+}
+
+#main-content #victory #special-congrats.hidden {
+  display: none;
+}
+
+#main-content #victory #play-again, #main-content #victory #options-link {
+  cursor: pointer;
+  text-align: center;
+  margin-top: 25px;
+  padding: 10px 0;
+  border: 1px solid #dddddd;
+}
+/*# sourceMappingURL=game.css.map */
