@@ -96,10 +96,6 @@ html {
                 text-align: center;
                 font-size: 2rem;
                 margin-left: 50px;
-
-                // &#color-answer-no {
-                //     background: rgb(251, 30, 30);
-                // }
             }
         }
 
@@ -119,20 +115,15 @@ html {
         width: var(--gameboard-width);
         height: var(--gameboard-heigth);
         border: 15px solid #080808;
-        // box-sizing: border-box;
-        // margin: auto;
         &.hidden {
             display: none;
-            // border-color: transparent;
         }
         
         .head-div {
             display: flex;
             flex-wrap: nowrap;
-            // width: calc(100% - 400px);
             width: 100%;
             height: var(--head-size);
-            // border: 2px solid #555555;
 
             .free-place-div { 
                 display: flex;
@@ -141,7 +132,6 @@ html {
                 align-items: center;
                 width: var(--head-size);
                 height: 100%;
-                // border: 2px solid orangered;
 
                 #another-grid,
                 #same-grid-again,
@@ -149,9 +139,7 @@ html {
                 #options-btn {
                     cursor: pointer;
                     width: 40%;
-                    // align-self: flex-end;
                     text-align: center;
-                    // margin-top: 25px;
                     padding: 10px 0;
                     border: 1px solid headColor(bg);
                 }
@@ -159,18 +147,14 @@ html {
                 #answer-choice-div {
                     display: flex;
                     justify-content: space-evenly;
-                    // margin-top: 25px;
                     
                     #answer-zero {
-                        // cursor: pointer;
                         width: 46px;
                         height: 46px;
                         background-color: answerColor(origin);
-                        // border: 3px solid #888888;
                         margin: 15px 20px;
                         box-shadow: inset 0 0  5px 5px white;
                         &.current-choice {
-                            // border-color: #FF8800;
                             box-shadow: none;
                         }
                         &::before {
@@ -186,11 +170,9 @@ html {
                         width: 46px;
                         height: 46px;
                         background-color: answerColor(no);
-                        // border: 3px solid #888888;
                         margin: 15px 20px;
                         box-shadow: inset 0 0  5px 5px white;
                         &.current-choice {
-                            // border-color: #FF8800;
                             box-shadow: none;
                         }
                         &::before {
@@ -206,11 +188,9 @@ html {
                         width: 46px;
                         height: 46px;
                         background-color: answerColor(maybe);
-                        // border: 3px solid #888888;
                         margin: 15px 20px;
                         box-shadow: inset 0 0  5px 5px white;
                         &.current-choice {
-                            // border-color: #FF8800;
                             box-shadow: none;
                         }
                         &::before {
@@ -226,11 +206,9 @@ html {
                         width: 46px;
                         height: 46px;
                         background-color: answerColor(yes);
-                        // border: 3px solid #888888;
                         margin: 15px 20px;
                         box-shadow: inset 0 0  5px 5px white;
                         &.current-choice {
-                            // border-color: #FF8800;
                             box-shadow: none;
                         }
                         &::before {
@@ -263,10 +241,6 @@ html {
                 .helper {    
                     font-size: var(--col-head-font-size);
                     color: headColor(font);
-
-                    // &.found {
-                    //     color: answerColor(yes);
-                    // }
                 }
             }
         }
@@ -282,7 +256,6 @@ html {
                 justify-content: flex-end;
                 align-items: center;
                 width: var(--head-size);
-                // height: calc((100% - var(--head-size)) / var(--nb-rows));
                 height: 100%;
                 background-color: headColor(bg);
                 box-sizing: border-box;
@@ -292,10 +265,6 @@ html {
                     padding: 0 10px;
                     font-size: var(--row-head-font-size);
                     color: headColor(font);
-
-                    // &.found {
-                    //     color: answerColor(yes);
-                    // }
                 }
             }
 
@@ -308,7 +277,6 @@ html {
                 border: 1px solid #222222;
                 &:nth-child(5n+1) {
                     border-right-width: 3px;
-                    /* border-bottom is in game.js::fillGameboard() -> tileDiv.classList.add('tile'); */
                 }
                 &:nth-last-child(1) {
                     border-right-width: 1px;
@@ -369,13 +337,5 @@ html {
             padding: 10px 0;
             border: 1px solid #dddddd;
         }
-
     }
 }
-
-// .row-head-div.helper, .col-head-div.helper {    
-//     font-size: 2rem;
-// }
-
-
-

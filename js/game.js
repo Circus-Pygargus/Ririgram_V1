@@ -2,7 +2,7 @@
 *  VARIABLES                #
 * ######################## */
 
-// Set to false if not in dev !!
+// Set to false if not in dev !! it desactivate the default action of right click button !
 var inDev = true;
 
 /* HTML elements */
@@ -62,81 +62,6 @@ var colorAnswerOrigin;
 var colorAnswerNo;
 var colorAnswerMaybe;
 var colorAnswerYes;
-// // object used to check or save game options locally
-
-// comme ça ça marche pas :
-
-var forLocalStorage = {
-    'rowsNb': {
-        'name': 'rows-nb',
-        'variableJs': rowsNb
-    },
-    'columnsNb': {
-        'name': 'column-nb',
-        'variableJs': columnsNb
-    },
-    'headBg': {
-        'name': 'color-head-bg',
-        'variableJs': colorHeadBg
-    },
-    'headFont': {
-        'name': 'color-head-font',
-        'variableJs': colorHeadFont
-    },
-    'answerOrigin': {
-        'name': 'color-answer-origin',
-        'variableJs': colorAnswerOrigin
-    },
-    'answerNo': {
-        'name': 'color-answer-no',
-        'variableJs': colorAnswerNo
-    },
-    'answerMaybe': {
-        'name': 'color-answer-maybe',
-        'variableJs': colorAnswerMaybe
-    },
-    'answerYes': {
-        'name': 'color-answer-yes',
-        'variableJs': colorAnswerYes
-    }
-}
-
-// comme ça ça fonctionne :
-
-// var forLocalStorage = {
-//     'rowsNb': {
-//         'name': 'rows-nb',
-//         'input': rowsNbInput
-//     },
-//     'columnsNb': {
-//         'name': 'column-nb',
-//         'input': colsNbInput
-//     },
-//     'headBg': {
-//         'name': 'color-head-bg',
-//         'input': colorHeadBgInput
-//     },
-//     'headFont': {
-//         'name': 'color-head-font',
-//         'input': colorHeadfontInput
-//     },
-//     'answerOrigin': {
-//         'name': 'color-answer-origin',
-//         'input': colorAnswerOriginInput
-//     },
-//     'answerNo': {
-//         'name': 'color-answer-no',
-//         'input': colorAnswerNoInput
-//     },
-//     'answerMaybe': {
-//         'name': 'color-answer-maybe',
-//         'input': colorAnswerMaybeInput
-//     },
-//     'answerYes': {
-//         'name': 'color-answer-yes',
-//         'input': colorAnswerYesInput
-//     }
-// }
 
 // row and col heads font size
 var rowHeadFontSize;
@@ -340,30 +265,6 @@ function setOptionsInputs () {
 
 // set local storage
 function setLocalStorage () {    
-
-    // for(var k in validation_messages) {
-    //     var o = validation_messages[k];
-    //     do_something_with(o.your_name);
-    //     do_something_else_with(o.your_msg);
-    // }
-    
-    
-    // for (var k in forLocalStorage) {
-    //     var option = forLocalStorage[k];
-
-        // comme ça ça marche pas :
-        // console.log('name : ' + option.name);
-        // console.log('variableJs : ' + option.variableJs);
-        // localStorage.setItem(option.name, option.variableJs.value);
-
-        //comme ça oui : bah non en fait :(   
-        // console.log('name : ' + option.name);
-        // console.log('name : ' + option.input.value);
-        // localStorage.setItem(option.name, option.input.value);
-
-        
-        // console.log('item Set : ' + localStorage.getItem(option.name));
-    // }
     localStorage.setItem('nb-rows', rowsNb);
     localStorage.setItem('nb-cols', columnsNb);
     localStorage.setItem('color-head-bg', colorHeadBg);
@@ -527,8 +428,6 @@ function changeChoice (_choice) {
                 answerYesBtn.classList.add('current-choice');
             break;
     }
-    // answerYesBtn.classList.add('current-choice');
-    // LeftMouseBtnCurrentChoice = 'yes';
 }
 
 

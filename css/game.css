@@ -336,7 +336,6 @@ html {
 
 #main-content #gameboard .row-div .tile:nth-child(5n+1) {
   border-right-width: 3px;
-  /* border-bottom is in game.js::fillGameboard() -> tileDiv.classList.add('tile'); */
 }
 
 #main-content #gameboard .row-div .tile:nth-last-child(1) {
